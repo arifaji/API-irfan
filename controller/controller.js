@@ -16,6 +16,24 @@ exports.getForm = function(req,res){
                 } else {
                     response.list(data,data2,res);
                 }
+            });
+        }
+    });
+}
+
+exports.search = function(req,res){
+    dao.getForm(req.params['formName'],req.params['formType'],function(error,data){
+        if(error){
+            console.log(error);
+            response.err(error,res);
+        } else {
+            dao.search(req.body.nik,req.params['formName'],function(error,data2){
+                if(error){
+                    console.log(error);
+                    response.err(error,res);
+                } else {
+                    response.list(data,data2,res);
+                }
             })
         }
     })
@@ -29,7 +47,7 @@ exports.updateData = function(req,res){
         } else {
             response.success(data,res);
         }
-    })
+    });
 }
 
 exports.getFormValue= function(req,res){
@@ -50,9 +68,9 @@ exports.getFormValue= function(req,res){
                     }
                     response.ok(data2,res);
                 }
-            })
+            });
         }
-    })
+    });
 }
 
 exports.insert = function(req,res){
@@ -63,5 +81,5 @@ exports.insert = function(req,res){
         } else {
             response.success(data,res);
         }
-    })
+    });
 }
