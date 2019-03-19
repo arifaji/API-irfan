@@ -30,6 +30,15 @@ exports.ok = function(values,res){
     res.end();
 }
 
+exports.success = function(values,res){
+    var data ={
+        values : values
+    }
+
+    res.xml(data);
+    res.end();
+}
+
 exports.err = function(values,res){
     var data = {
         form: {
@@ -60,6 +69,7 @@ exports.list = function(values,values2,res){
                 result[type] = values2[i][type];
             }
         }
+        result.data_id = values2[i].data_id;
         arr.push({column:result});
         result={};
     }

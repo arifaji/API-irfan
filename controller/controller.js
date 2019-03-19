@@ -9,7 +9,7 @@ exports.getForm = function(req,res){
         } else if(req.params['formType']=="Form"){
             response.ok(data,res);
         } else if (req.params['formType']=="List"){
-            dao.getAll(function(error,data2){
+            dao.getAll(req.params['formName'],function(error,data2){
                 if(error){
                     console.log(error);
                     response.err(error,res);
@@ -17,6 +17,17 @@ exports.getForm = function(req,res){
                     response.list(data,data2,res);
                 }
             })
+        }
+    })
+}
+
+exports.updateData = function(req,res){
+    dao.updateData(req.params['tableName'],req.body,req.params['id'],function(error,data){
+        if(error){
+            console.log(error);
+            response.err(error,res);
+        } else {
+            response.success(data,res);
         }
     })
 }
@@ -40,6 +51,17 @@ exports.getFormValue= function(req,res){
                     response.ok(data2,res);
                 }
             })
+        }
+    })
+}
+
+exports.insert = function(req,res){
+    dao.insert(req.params['tableName'],req.params['customerGroup'],req.body,function(error,data){
+        if(error){
+            console.log(error);
+            response.err(error,res)
+        } else {
+            response.success(data,res);
         }
     })
 }

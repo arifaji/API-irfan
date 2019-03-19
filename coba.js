@@ -24,6 +24,7 @@ for(var i = 0;i<types.length;i++){
         }
     }
     console.log(result);
+    result.c= 5;
     array.push(result);
     result={};
 }
