@@ -1,13 +1,11 @@
 exports.ok = function(values,res){
-
-    var n = 3;
-
+    
     var arr=[];
     var column=[];
 
     for(var i =0;i<values.length;i++) {
         arr.push(values[i]);
-        if((i+1)%n==0){
+        if((i+1)%values[0].columns==0){
             column.push({column:arr});
             arr=[];
         }

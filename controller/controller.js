@@ -27,7 +27,7 @@ exports.search = function(req,res){
             console.log(error);
             response.err(error,res);
         } else {
-            dao.search(req.body.nik,req.params['formName'],function(error,data2){
+            dao.search(('%'+req.body.nik+'%'),req.params['formName'],function(error,data2){
                 if(error){
                     console.log(error);
                     response.err(error,res);
@@ -37,6 +37,7 @@ exports.search = function(req,res){
             })
         }
     })
+
 }
 
 exports.updateData = function(req,res){
@@ -53,11 +54,13 @@ exports.updateData = function(req,res){
 exports.getFormValue= function(req,res){
     dao.getCustomer(req.params['id'],function(error,data){
         if(error){
-            console.log(error,res)
+            console.log(error,res);
+            response.err(error,res);
         } else{
             dao.getForm(req.params['formName'],req.params['formType'],function(error,data2){
                 if(error){
                     console.log(error);
+                    response.err(error,res);
                 } else {
                     for(var k in data[0]) {
                         for(var i=0;i<data2.length;i++){
@@ -77,7 +80,7 @@ exports.insert = function(req,res){
     dao.insert(req.params['tableName'],req.params['customerGroup'],req.body,function(error,data){
         if(error){
             console.log(error);
-            response.err(error,res)
+            response.err(error,res);
         } else {
             response.success(data,res);
         }

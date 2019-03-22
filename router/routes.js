@@ -7,4 +7,5 @@ module.exports = function(app) {
     app.route('/api/:tableName/:id').put(todolist.updateData);
     app.route('/api/:tableName/:customerGroup').post(todolist.insert);
     app.route('/api/search/:formName/:formType').post(todolist.search);
+
 }

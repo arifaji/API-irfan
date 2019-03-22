@@ -1,5 +1,5 @@
 var connection = require('../db/dbcon');
-const sqlGetForm = `SELECT field.keyfield,field.label,field.datatype,field.required FROM mapping 
+const sqlGetForm = `SELECT field.keyfield,field.label,field.datatype,field.required,form.columns FROM mapping 
                     INNER JOIN form on mapping.form_id=form.form_id 
                     INNER JOIN field on mapping.field_id=field.field_id 
                     WHERE form.form_name=? AND form.type=? AND form.is_active='1' ORDER BY mapping.order_no ASC`;
@@ -7,7 +7,7 @@ const sqlGetCustomer = `SELECT name,pob,dob,nik,mmn,mob,npwp FROM customer WHERE
 const sqlGetCustomerAll = `SELECT data_id,name,dob,pob,nik,mmn,mob,npwp FROM customer WHERE customer_group=? and is_active='1'`;
 const sqlUpdate = 'UPDATE ?? SET ? WHERE data_id=?';
 const sqlInsert = 'INSERT INTO ?? SET customer_group=?,?';
-const sqlSearch = `SELECT data_id,name,dob,pob,nik,mmn,mob,npwp FROM customer WHERE nik = ? AND customer_group=? AND is_active='1'`;
+const sqlSearch = `SELECT data_id,name,dob,pob,nik,mmn,mob,npwp FROM customer WHERE nik LIKE ? AND customer_group=? AND is_active='1'`;
 
 
 exports.getForm = function(formName,formType,callback) {

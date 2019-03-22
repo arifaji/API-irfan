@@ -1,6 +1,6 @@
 var types = [{
-    a:1,
-    b:2,
+    a:'',
+    b:'',
     c:3
 },
 {
@@ -10,26 +10,33 @@ var types = [{
 }
 ]
 
-var filterArray = ['a','b']
 
-// console.log(types[0])
+Object.keys(types[0]).forEach(k => (!types[0][k] && types[0][k] !== undefined) && delete types[0][k]);
 
-var array = [];
+console.log(types[0]);
 
-var result={};
-for(var i = 0;i<types.length;i++){
-    for(var type in types[i]){
-        if(filterArray.indexOf(type)>-1){
-            result[type] = types[i][type];
-        }
-    }
-    console.log(result);
-    result.c= 5;
-    array.push(result);
-    result={};
-}
 
-console.log(array);
+
+// var filterArray = ['a','b']
+
+// // console.log(types[0])
+
+// var array = [];
+
+// var result={};
+// for(var i = 0;i<types.length;i++){
+//     for(var type in types[i]){
+//         if(filterArray.indexOf(type)>-1){
+//             result[type] = types[i][type];
+//         }
+//     }
+//     console.log(result);
+//     result.c= 5;
+//     array.push(result);
+//     result={};
+// }
+
+// console.log(array);
 
 
 
